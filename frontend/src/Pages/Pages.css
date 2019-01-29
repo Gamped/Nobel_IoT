@@ -1,0 +1,8 @@
+.PageBorder{
+    background-image: linear-gradient(#21303C, #142533);
+    position: absolute;
+    left: 1vh;
+    right: 1vh;
+    top: 1vh;
+    bottom: 1vh;
+}

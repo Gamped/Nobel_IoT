@@ -1,0 +1,108 @@
+body{
+    background-color: #091824;
+    z-index: -1;
+}
+
+.customText_w{
+    font-family: 'Trebuchet MS', Tahoma, Arial;
+    text-align: center;
+    font-size: 2vh;
+    color: rgb(255, 255, 255);
+}
+
+.customText_w_medium{
+    font-family: 'Trebuchet MS', Tahoma, Arial;
+    text-align: center;
+    font-size: 3vh;
+    color: rgb(255, 255, 255);
+}
+
+.customText_b{
+    font-family: 'Trebuchet MS', Tahoma, Arial;
+    text-align: center;
+    font-size: 2vh;
+    color: rgb(0, 0, 0);
+}
+
+.customText_b_medium{
+    font-family: 'Trebuchet MS', Tahoma, Arial;
+    text-align: center;
+    font-size: 3vh;
+    color: rgb(0, 0, 0);
+}
+
+.customText_b_bold{
+    font-family: 'Trebuchet MS', Tahoma, Arial;
+    text-align: center;
+    font-size: 2vh;
+    color: rgb(0, 0, 0);
+    font-weight: bold;
+}
+
+.customText_b_big{
+    font-family: 'Trebuchet MS', Tahoma, Arial;
+    text-align: center;
+    width: 100%;
+    font-size: 4vh;
+    color: rgb(0, 0, 0);
+}
+
+.Margin_1{
+    position: absolute;
+    left: 1vh;
+    right: 1vh;
+    top: 1vh;
+    bottom: 1vh;
+}
+
+.Margin_2{
+    position: absolute;
+    left: 2vh;
+    right: 2vh;
+    top: 2vh;
+    bottom: 2vh;
+}
+
+.Margin_3{
+    position: absolute;
+    left: 3vh;
+    right: 3vh;
+    top: 3vh;
+    bottom: 3vh;
+}
+
+.std_BTN{
+    background-color: rgb(136, 136, 136);
+    border-style: solid;
+    border-color: rgb(94, 94, 94); 
+}
+
+.dark_BTN{
+    background-color: rgb(56, 56, 56);
+    border-style: solid;
+    border-color: rgb(65, 65, 65); 
+}
+
+.yellow_BTN{
+    background-color: rgb(235, 176, 49);
+    border-style: solid;
+    border-color: rgb(94, 94, 94); 
+}
+
+.green_BTN{
+    background-color: rgb(24, 155, 20);
+    border-style: solid;
+    border-color: rgb(94, 94, 94); 
+}
+
+.blue_BTN{
+    background-color: rgb(20, 112, 155);
+    border-style: solid;
+    border-color: rgb(94, 94, 94); 
+}
+
+.red_BTN{
+    background-color: rgb(170, 11, 11);
+    border-style: solid;
+    border-color: rgb(94, 94, 94);  
+}
