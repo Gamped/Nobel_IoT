@@ -4,5 +4,4 @@
 - Write "node NobelIoTServer"
 
 ***Relevant links:***
-- Socket.io information: https://socket.io/get-started/chat/ 
-- Color palette: http://paletton.com/#uid=13x0u0kfEbG9Zm1bPgwkI9UpQ72
+- Socket.io information: https://socket.io/get-started/chat/

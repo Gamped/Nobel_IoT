@@ -5,38 +5,40 @@ import "./Home.css"
 
 const socket = openSocket('http://localhost:8000');
 
-function subscribeToTimer( cb) {
-    socket.on('timer', timestamp => cb(null, timestamp));
-    socket.emit('subscribeToTimer', 1000);
+function updateBeamerState(info){
+    socket.on('updateBeamerState',  BeamerState => info(null, BeamerState));
 }
 
 class Home extends React.Component {
     constructor(props) {
         super(props);
-        subscribeToTimer((err, timestamp) => this.setState({ 
-            timestamp 
-          }));
+        
+        updateBeamerState((err, BeamerState) => this.setState({BeamerState}));
+
+        // Default state:
         this.state = {
             Title: "Nobel IoT",
-            timestamp: "none",
+            BeamerState: "unknown",
         }
     }
 
-    TurnOnBeamer = (e) => {
-        this.setState({...this, Title: "haha"});
-        
+    ToggleBeamer = (e) => {
+        socket.emit('toggleBeamer');
     }
 
     render(){
+        socket.emit('getBeamerState');
         return(
             <div className="PageBorder">
                 <div className="Margin_2">
                     <h1 className="customText_w_medium">{this.state.Title} : {this.state.timestamp}</h1>
-                    <button onClick={this.TurnOnBeamer} className="Home_BTN dark_BTN customText_w_medium">Beamer</button>
+                    <button onClick={this.ToggleBeamer} 
+                            className="Home_BTN dark_BTN customText_w_medium">
+                            Toggle beamer: Currently {this.state.BeamerState}
+                    </button>
                 </div>
             </div>
         );
     }
 }    
-export { subscribeToTimer }
 export default Home;
