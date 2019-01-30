@@ -1,25 +1,20 @@
 import React from "react";
 import openSocket from 'socket.io-client';
+import {socket} from "../../Websocket/Socket"
+import {updateBeamerState} from "../../Websocket/WsUpdaters"
 import "../Pages.css"
 import "./Home.css"
 
-const socket = openSocket('http://localhost:8000');
-
-function updateBeamerState(info){
-    socket.on('updateBeamerState',  BeamerState => info(null, BeamerState));
-}
-
 class Home extends React.Component {
     constructor(props) {
-        super(props);
-        
-        updateBeamerState((err, BeamerState) => this.setState({BeamerState}));
-
-        // Default state:
+        super(props)
         this.state = {
             Title: "Nobel IoT",
             BeamerState: "unknown",
         }
+
+        // Functions for updating the state
+        updateBeamerState((err, BeamerState) => this.setState({BeamerState}));
     }
 
     ToggleBeamer = (e) => {
@@ -28,10 +23,11 @@ class Home extends React.Component {
 
     render(){
         socket.emit('getBeamerState');
+        
         return(
             <div className="PageBorder">
                 <div className="Margin_2">
-                    <h1 className="customText_w_medium">{this.state.Title} : {this.state.timestamp}</h1>
+                    <h1 className="customText_w_medium">{this.state.Title}</h1>
                     <button onClick={this.ToggleBeamer} 
                             className="Home_BTN dark_BTN customText_w_medium">
                             Toggle beamer: Currently {this.state.BeamerState}
