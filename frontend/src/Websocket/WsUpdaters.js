@@ -4,4 +4,8 @@ function updateBeamerState(info){
     socket.on('updateBeamerState',  BeamerState => info(null, BeamerState));
 }
 
-export {updateBeamerState}
+function updateChannelState(info){
+    socket.on('updateChannelState', ChannelState => info(null, ChannelState));
+}
+
+export {updateBeamerState, updateChannelState}

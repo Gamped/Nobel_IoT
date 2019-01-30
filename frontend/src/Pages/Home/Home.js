@@ -1,6 +1,6 @@
 import React from "react";
 import {socket} from "../../Websocket/Socket"
-import {updateBeamerState} from "../../Websocket/WsUpdaters"
+import {updateBeamerState, updateChannelState} from "../../Websocket/WsUpdaters"
 import "../Pages.css"
 import "./Home.css"
 
@@ -9,18 +9,25 @@ class Home extends React.Component {
         super(props)
         this.state = {
             Title: "Nobel IoT",
-            BeamerState: "unknown",
+            BeamerState: "Unknown",
+            ChannelState: "Unknown",
         }
 
         // Get the current state
         socket.emit('getBeamerState');
+        socket.emit('getChannelState');
 
         // Functions for updating the state
         updateBeamerState((err, BeamerState) => this.setState({BeamerState}));
+        updateChannelState((err, ChannelState) => this.setState({ChannelState}));
     }
 
     ToggleBeamer = (e) => {
         socket.emit('toggleBeamer');
+    }
+
+    ToggleChannel = (e) => {
+        socket.emit('toggleChannel');
     }
 
     render(){
@@ -34,11 +41,11 @@ class Home extends React.Component {
                     <div className="Home_BtnBox">
                         <button onClick={this.ToggleBeamer} 
                                 className="Home_BTN std_BTN customText_w">
-                                Toggle beamer: Currently {this.state.BeamerState}
+                                Turn beamer {this.state.BeamerState}
                         </button>
-                        <button onClick={this.ToggleBeamer} 
+                        <button onClick={this.ToggleChannel} 
                                 className="Home_BTN std_BTN customText_w">
-                                Toggle beamer: Currently {this.state.BeamerState}
+                                Change channel to {this.state.ChannelState}
                         </button>
                     </div>
                 </div>
