@@ -6,45 +6,15 @@ body{
 .customText_w{
     font-family: 'Trebuchet MS', Tahoma, Arial;
     text-align: center;
-    font-size: 2vh;
-    color: rgb(255, 255, 255);
-}
-
-.customText_w_medium{
-    font-family: 'Trebuchet MS', Tahoma, Arial;
-    text-align: center;
     font-size: 3vh;
     color: rgb(255, 255, 255);
 }
 
-.customText_b{
+.customText_w_big{
     font-family: 'Trebuchet MS', Tahoma, Arial;
     text-align: center;
-    font-size: 2vh;
-    color: rgb(0, 0, 0);
-}
-
-.customText_b_medium{
-    font-family: 'Trebuchet MS', Tahoma, Arial;
-    text-align: center;
-    font-size: 3vh;
-    color: rgb(0, 0, 0);
-}
-
-.customText_b_bold{
-    font-family: 'Trebuchet MS', Tahoma, Arial;
-    text-align: center;
-    font-size: 2vh;
-    color: rgb(0, 0, 0);
-    font-weight: bold;
-}
-
-.customText_b_big{
-    font-family: 'Trebuchet MS', Tahoma, Arial;
-    text-align: center;
-    width: 100%;
     font-size: 4vh;
-    color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
 }
 
 .Margin_1{
@@ -72,15 +42,9 @@ body{
 }
 
 .std_BTN{
-    background-color: rgb(136, 136, 136);
+    background-image: linear-gradient(#506371, #374855);
     border-style: solid;
-    border-color: rgb(94, 94, 94); 
-}
-
-.dark_BTN{
-    background-color: rgb(56, 56, 56);
-    border-style: solid;
-    border-color: rgb(65, 65, 65); 
+    border-color: #091824; 
 }
 
 .yellow_BTN{

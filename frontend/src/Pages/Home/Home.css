@@ -1,5 +1,23 @@
 .Home_BTN{
-    width: 100%;
+    width: 90%;
     top: 0;
-    height: 30vh;
+    height: 40vh;
+    margin-top: 2vh;
+    margin-left: 5%
+}
+
+.Home_BtnBox{
+    position: absolute;
+    top: 10vh;
+    width: 100%;
+    bottom: 0;
+}
+
+.Home_TitleBox{
+    position: absolute;
+    width: 100%;
+    height: 9vh;
+    background-image: linear-gradient(#506371, #374855);
+    border-style: solid;
+    border-color: #091824; 
 }
