@@ -8,4 +8,8 @@ function updateChannelState(info){
     socket.on('updateChannelState', ChannelState => info(null, ChannelState));
 }
 
-export {updateBeamerState, updateChannelState}
+function updateSoundState(info){
+    socket.on('updateSoundState', SoundState => info(null, SoundState));
+}
+
+export {updateBeamerState, updateChannelState, updateSoundState}
