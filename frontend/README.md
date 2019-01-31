@@ -6,3 +6,7 @@
 ***Relevant links:***
 - Socket.io information: https://socket.io/docs/
 - Color palette: http://paletton.com/#uid=13x0u0kfEbG9Zm1bPgwkI9UpQ72
+
+***Credit:***
+Icon made by Pixel Buddha from www.flaticon.com
+Link: https://www.flaticon.com/free-icon/ufo_179595

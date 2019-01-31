@@ -1,4 +1,4 @@
-const debug = true;
+const debug = false;
 const io = require('socket.io')();
 const port = 8000;
 var beamerState = true; // <- This is just for mock-data purpose
@@ -69,7 +69,7 @@ io.on('connection', (socket) => {
             if (debug){console.log('Channel toggled to: ', soundState ? "Unmute" : "Mute")};
         } else {
             // Invalid password, so let user know
-            console.log("Admin login attempt: Wrong password")
+            console.log(new Date(), 'Admin login attempt: Wrong password!');
             socket.emit('updateSoundState', "INVALID PASSWORD");
         }
     });
