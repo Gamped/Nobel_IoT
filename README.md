@@ -6,4 +6,4 @@ Nobel IoT is a client-server soulution which can give users access to turn on/of
 ## Technologies: 
 - **Frontend:** REACT
 - **Backend:** Node.js
-- **Comunnication via:** Socet.io
+- **Comunnication via:** Socket.io *(Websocket)*

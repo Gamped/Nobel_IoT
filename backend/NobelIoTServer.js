@@ -58,8 +58,8 @@ io.on('connection', (socket) => {
     // Change the channel between mute/unmute
     // But only if password is valid
     socket.on('toggleSound', function(pass){
-        // TEMP HARDCODED PASSWORD - this will be  need to be changed to improve security;)
-        if (pass === "Password4"){
+        // TEMP HARDCODED (md5) PASSWORD - this will be  need to be changed to improve security;)
+        if (pass === "b24ecc40cef177b0334c4cfa91f94d28"){
             if (soundState === true){
                 soundState = false;
             } else {soundState = true;}
@@ -77,7 +77,6 @@ io.on('connection', (socket) => {
     socket.on('getSoundState', function(){
         socket.emit('updateSoundState', soundState ? "Mute" : "Unmute");
     });
-
 
     /* ------------------------------------ */
 });

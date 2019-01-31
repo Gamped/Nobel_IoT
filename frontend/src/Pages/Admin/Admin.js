@@ -3,6 +3,7 @@ import {socket} from "../../Websocket/Socket"
 import {updateBeamerState, updateChannelState, updateSoundState} from "../../Websocket/WsUpdaters"
 import "../Pages.css";
 import "./Admin.css";
+const md5 = require('js-md5');
 
 class Admin extends React.Component {
     constructor(props) {
@@ -35,7 +36,9 @@ class Admin extends React.Component {
     }
 
     ToggleSound = (e) => {
-        socket.emit('toggleSound', this.state.AdminPassword);
+        // Encrypt password using md5 before sending
+        var md5Pass = md5(this.state.AdminPassword);
+        socket.emit('toggleSound', md5Pass);
     }
 
     OnChange = (e) => {
@@ -60,7 +63,7 @@ class Admin extends React.Component {
 
                         <button onClick={this.ToggleBeamer} 
                                 className="Admin_BTN dark_BTN customText_w">
-                                Turn beamer {this.state.BeamerState}
+                                Turn {this.state.BeamerState} beamer
                         </button>
 
                         <button onClick={this.ToggleChannel} 

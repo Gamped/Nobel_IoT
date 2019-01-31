@@ -41,7 +41,7 @@ class Home extends React.Component {
                     <div className="Home_BtnBox">
                         <button onClick={this.ToggleBeamer} 
                                 className="Home_BTN std_BTN customText_w">
-                                Turn beamer {this.state.BeamerState}
+                                Turn {this.state.BeamerState} beamer
                         </button>
                         <button onClick={this.ToggleChannel} 
                                 className="Home_BTN std_BTN customText_w">
@@ -52,5 +52,6 @@ class Home extends React.Component {
             </div>
         );
     }
-}    
+}
+
 export default Home;
