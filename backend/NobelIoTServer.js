@@ -59,7 +59,7 @@ io.on('connection', (socket) => {
     // But only if password is valid
     socket.on('toggleSound', function(pass){
         // TEMP HARDCODED (md5) PASSWORD - this will be  need to be changed to improve security;)
-        if (pass === "b24ecc40cef177b0334c4cfa91f94d28"){
+        if (pass === "6768d790297858f055df0dc2483811db"){
             if (soundState === true){
                 soundState = false;
             } else {soundState = true;}
