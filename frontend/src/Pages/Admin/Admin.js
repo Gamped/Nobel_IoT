@@ -38,7 +38,6 @@ class Admin extends React.Component {
     ToggleSound = (e) => {
         // Encrypt password using md5 before sending
         var md5Pass = md5(this.state.AdminPassword);
-        console.log(md5Pass);
         socket.emit('toggleSound', md5Pass);
     }
 
