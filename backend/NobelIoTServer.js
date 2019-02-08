@@ -1,9 +1,44 @@
 const debug = false;
 const io = require('socket.io')();
 const port = 8000;
+
 var beamerState = true; // <- This is just for mock-data purpose
 var channelState = true; // <- This is just for mock-data purpose
 var soundState = true; // <- This is just for mock-data purpose
+
+const dbus = require('dbus-native');
+const sessionBus = dbus.sessionBus();
+const servicename = "dk.nobelnet.mediacontrol";
+const receiverObectPath = "/dk/nobelnet/mediacontrol/receiver";
+const projectorObectPath = "/dk/nobelnet/mediacontrol/projector"; 
+const receiverInterface = "dk.nobelnet.mediactontrol.receiver";
+const projectorInterface = "dk.nobelnet.mediacontrol.projector";
+
+if (!sessionBus) {
+    throw new Error("Could not connect to DBus!");
+}
+
+const mediactl = sessionBus.getService(servicename);
+
+function ProjectorSend(cmd) {
+    mediactl.getInterface(projectorObectPath, projectorInterface, (err, iface) => {
+        if (err && !debug) {
+            throw new Error("Could not connect to projector");
+        } else {
+            //iface.SendCommand(cmd);
+        }
+    });
+}
+
+function RecieverSend(cmd) {
+    mediactl.getInterface(receiverObectPath, receiverInterface, (err, iface) => {
+        if (err && !debug) {
+            throw new Error("Could not connect to reciever");
+        } else {
+            //iface.SendCommand(cmd);
+        }
+    });
+}
 
 // Listen on the assigned port
 io.listen(port);
@@ -23,7 +58,11 @@ io.on('connection', (socket) => {
     socket.on('toggleBeamer', function(){
         if (beamerState === true){
             beamerState = false;
-        } else {beamerState = true;}
+            ProjectorSend("PowerOff");
+        } else {
+            beamerState = true;
+            ProjectorSend("PowerOn");
+        }
 
         io.sockets.emit('updateBeamerState', beamerState ? "off" : "on");
 
@@ -41,7 +80,11 @@ io.on('connection', (socket) => {
     socket.on('toggleChannel', function(){
         if (channelState === true){
             channelState = false;
-        } else {channelState = true;}
+            RecieverSend("Hurlumhej");
+        } else {
+            channelState = true;
+            RecieverSend("Hurlumhej");
+        }
 
         io.sockets.emit('updateChannelState', channelState ? "Chromecast" : "HDMI");
 
@@ -59,10 +102,14 @@ io.on('connection', (socket) => {
     // But only if password is valid
     socket.on('toggleSound', function(pass){
         // TEMP HARDCODED (md5) PASSWORD - this will be  need to be changed to improve security;)
-        if (pass === "6768d790297858f055df0dc2483811db"){
+        if (pass === "16621a449968824b63a8210c42cded23"){
             if (soundState === true){
                 soundState = false;
-            } else {soundState = true;}
+                RecieverSend("Hurlumhej");
+            } else {
+                soundState = true;
+                RecieverSend("Hurlumhej");
+            }
     
             io.sockets.emit('updateSoundState', soundState ? "Mute" : "Unmute");
     

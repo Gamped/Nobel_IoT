@@ -9,7 +9,7 @@ class Admin extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            Title: "Nobel IoT: Admin",
+            Title: "Nobel mediacontrol: Admin",
             BeamerState: "Unknown",
             ChannelState: "Unknown",
             AdminPassword: "",
@@ -37,7 +37,8 @@ class Admin extends React.Component {
 
     ToggleSound = (e) => {
         // Encrypt password using md5 before sending
-        var md5Pass = md5(this.state.AdminPassword);
+        var md5Pass = md5(this.state.AdminPassword + "saltyNobel");
+        console.log(md5Pass)
         socket.emit('toggleSound', md5Pass);
     }
 

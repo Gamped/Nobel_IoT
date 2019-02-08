@@ -8,7 +8,7 @@ class Home extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            Title: "Nobel IoT",
+            Title: "Nobel mediacontrol",
             BeamerState: "Unknown",
             ChannelState: "Unknown",
         }
@@ -22,11 +22,11 @@ class Home extends React.Component {
         updateChannelState((err, ChannelState) => this.setState({ChannelState}));
     }
 
-    ToggleBeamer = (e) => {
+    ToggleBeamer = () => {
         socket.emit('toggleBeamer');
     }
 
-    ToggleChannel = (e) => {
+    ToggleChannel = () => {
         socket.emit('toggleChannel');
     }
 
