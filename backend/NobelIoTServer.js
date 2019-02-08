@@ -6,38 +6,18 @@ var beamerState = true; // <- This is just for mock-data purpose
 var channelState = true; // <- This is just for mock-data purpose
 var soundState = true; // <- This is just for mock-data purpose
 
-const dbus = require('dbus-native');
-const sessionBus = dbus.sessionBus();
 const servicename = "dk.nobelnet.mediacontrol";
 const receiverObectPath = "/dk/nobelnet/mediacontrol/receiver";
 const projectorObectPath = "/dk/nobelnet/mediacontrol/projector"; 
 const receiverInterface = "dk.nobelnet.mediactontrol.receiver";
 const projectorInterface = "dk.nobelnet.mediacontrol.projector";
 
-if (!sessionBus) {
-    throw new Error("Could not connect to DBus!");
-}
-
-const mediactl = sessionBus.getService(servicename);
-
 function ProjectorSend(cmd) {
-    mediactl.getInterface(projectorObectPath, projectorInterface, (err, iface) => {
-        if (err && !debug) {
-            throw new Error("Could not connect to projector");
-        } else {
-            //iface.SendCommand(cmd);
-        }
-    });
+    
 }
 
 function RecieverSend(cmd) {
-    mediactl.getInterface(receiverObectPath, receiverInterface, (err, iface) => {
-        if (err && !debug) {
-            throw new Error("Could not connect to reciever");
-        } else {
-            //iface.SendCommand(cmd);
-        }
-    });
+    
 }
 
 // Listen on the assigned port
