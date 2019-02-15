@@ -22,9 +22,7 @@ function BeamerSend(cmd) {
     bus.getInterface(servicename, beamerObectPath, beamerInterface, function(err, interface){
         if (err) {
             throw new Error("Could not connect to beamer");
-        } else {
-            interface.SendCommand(cmd);
-        }
+        } else {interface.SendCommand(cmd);}
     });
 }
 
@@ -33,9 +31,7 @@ function RecieverSend(cmd) {
     bus.getInterface(servicename, receiverObectPath, receiverInterface, function(err, interface){
         if (err) {
             throw new Error("Could not connect to reciever");
-        } else {
-            interface.SendCommand(cmd);
-        }
+        } else {interface.SendCommand(cmd);}
     });
 }
 
@@ -107,14 +103,14 @@ io.on('connection', (socket) => {
                 RecieverSend("! TO BE SET !");
             } else {
                 soundState = true;
-                RecieverSend("Hurlumh! TO BE SET !ej");
+                RecieverSend("! TO BE SET !");
             }
     
             io.sockets.emit('updateSoundState', soundState ? "Mute" : "Unmute");
     
             if (debug){console.log('Channel toggled to: ', soundState ? "Unmute" : "Mute")};
         } else {
-            // Invalid password, so let user know
+            // Invalid password, so let user know + log
             console.log(new Date(), 'Admin login attempt: Wrong password!');
             socket.emit('updateSoundState', "INVALID PASSWORD");
         }
@@ -126,4 +122,3 @@ io.on('connection', (socket) => {
 
     /* ------------------------------------ */
 });
-

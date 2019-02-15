@@ -1,6 +1,6 @@
 import React from "react";
-import {socket} from "../../Websocket/Socket"
-import {updateBeamerState, updateChannelState} from "../../Websocket/WsUpdaters"
+import {socket} from "../../Socket/Socket"
+import {updateBeamerState, updateChannelState} from "../../Socket/WsUpdaters"
 import "../Pages.css"
 import "./Home.css"
 
@@ -22,13 +22,9 @@ class Home extends React.Component {
         updateChannelState((err, ChannelState) => this.setState({ChannelState}));
     }
 
-    ToggleBeamer = () => {
-        socket.emit('toggleBeamer');
-    }
+    ToggleBeamer = () => {socket.emit('toggleBeamer');}
 
-    ToggleChannel = () => {
-        socket.emit('toggleChannel');
-    }
+    ToggleChannel = () => {socket.emit('toggleChannel');}
 
     render(){
         return(

@@ -1,6 +1,6 @@
 import React from "react";
-import {socket} from "../../Websocket/Socket"
-import {updateBeamerState, updateChannelState, updateSoundState} from "../../Websocket/WsUpdaters"
+import {socket} from "../../Socket/Socket"
+import {updateBeamerState, updateChannelState, updateSoundState} from "../../Socket/WsUpdaters"
 import "../Pages.css";
 import "./Admin.css";
 const md5 = require('js-md5');
@@ -27,24 +27,17 @@ class Admin extends React.Component {
         updateSoundState((err, SoundState) => this.setState({SoundState}));
     }
 
-    ToggleBeamer = (e) => {
-        socket.emit('toggleBeamer');
-    }
+    ToggleBeamer = (e) => {socket.emit('toggleBeamer');}
 
-    ToggleChannel = (e) => {
-        socket.emit('toggleChannel');
-    }
+    ToggleChannel = (e) => {socket.emit('toggleChannel');}
 
     ToggleSound = (e) => {
         // Encrypt password using md5 before sending
         var md5Pass = md5(this.state.AdminPassword + "saltyNobel");
-        console.log(md5Pass)
         socket.emit('toggleSound', md5Pass);
     }
 
-    OnChange = (e) => {
-        this.setState({...this, AdminPassword: e.target.value});
-    }
+    OnChange = (e) => {this.setState({...this, AdminPassword: e.target.value});}
 
     render(){
         return(
@@ -56,6 +49,7 @@ class Admin extends React.Component {
 
                     <div className="Admin_BtnBox">
                         <h1 className="Admin_InfoText customText_w">Password need to be entered correctly for the system to accept mute/unmute</h1>
+                        
                         <input  type="Password" 
                                 className="Admin_PassForm customText_b" 
                                 placeholder="Enter admin password" 
@@ -81,5 +75,6 @@ class Admin extends React.Component {
             </div>
         );
     }
-}    
+}
+    
 export default Admin;
