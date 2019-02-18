@@ -35,6 +35,15 @@ function RecieverSend(cmd) {
     });
 }
 
+// Select input for the reciever over DBus
+function RecieverInput(input) {
+    bus.getInterface(servicename, receiverObectPath, receiverInterface, function(err, interface){
+        if (err) {
+            throw new Error("Could not connect to reciever");
+        } else {interface.SelectInput(input);}
+    });
+}
+
 // Listen on the assigned port
 io.listen(port);
 console.log('Linstening on port: ', port);
@@ -75,10 +84,10 @@ io.on('connection', (socket) => {
     socket.on('toggleChannel', function(){
         if (channelState === true){
             channelState = false;
-            RecieverSend("! TO BE SET !");
+            RecieverInput("Chromecast");
         } else {
             channelState = true;
-            RecieverSend("! TO BE SET !");
+            RecieverInput("WallHDMI");
         }
 
         io.sockets.emit('updateChannelState', channelState ? "Chromecast" : "HDMI");
@@ -100,10 +109,10 @@ io.on('connection', (socket) => {
         if (pass === "16621a449968824b63a8210c42cded23"){
             if (soundState === true){
                 soundState = false;
-                RecieverSend("! TO BE SET !");
+                RecieverSend("Mute");
             } else {
                 soundState = true;
-                RecieverSend("! TO BE SET !");
+                RecieverSend("Unmute");
             }
     
             io.sockets.emit('updateSoundState', soundState ? "Mute" : "Unmute");
