@@ -9,7 +9,7 @@ class Admin extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            Title: "Nobel mediacontrol: Admin",
+            Title: "Nobel remote: Admin",
             BeamerState: "Unknown",
             ChannelState: "Unknown",
             AdminPassword: "",
@@ -28,7 +28,6 @@ class Admin extends React.Component {
     }
 
     ToggleBeamer = (e) => {socket.emit('toggleBeamer');}
-
     ToggleChannel = (e) => {socket.emit('toggleChannel');}
 
     ToggleSound = (e) => {

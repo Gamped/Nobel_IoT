@@ -8,7 +8,7 @@ class Home extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            Title: "Nobel mediacontrol",
+            Title: "Nobel remote",
             BeamerState: "Unknown",
             ChannelState: "Unknown",
         }
@@ -23,7 +23,6 @@ class Home extends React.Component {
     }
 
     ToggleBeamer = () => {socket.emit('toggleBeamer');}
-
     ToggleChannel = () => {socket.emit('toggleChannel');}
 
     render(){
