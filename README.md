@@ -1,7 +1,7 @@
-# Nobel IoT
+# Nobel remote
 ![alt text](https://raw.githubusercontent.com/Gamped/Nobel_IoT/master/Documentation/NobelIOT.png)
 
-Nobel IoT is a client-server soulution which can give users access to turn on/off the beamer, change channels and mute/unmute the sound in the Nobel common room. 
+Nobel remote is a client-server soulution which can give users access to turn on/off the beamer, change channels and mute/unmute the sound in the Nobel common room. 
 
 ## Technologies: 
 - **Frontend:** REACT
