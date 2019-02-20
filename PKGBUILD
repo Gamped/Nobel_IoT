@@ -5,7 +5,6 @@
 pkgname=nobel-remote
 PROJECTNAME=nobelremote
 BACKEND=$PROJECTNAME/backend
-FRONTEND=$PROJECTNAME/frontend
 pkgver=1
 pkgrel=1
 pkgdesc="Webpage for controlling nobel-mediacontrol"
@@ -26,5 +25,5 @@ build() {
 package() {
   cd $srcdir/$BACKEND
   install -D -m644 NobelIoTServer.js "${pkgdir}"/usr/lib/nobel-remote/backend/NobelRemoteServer.js
-  # <<< WIP: Install folder with NPM packages >>>
+  install -d -m644 node_modules "${pkgdir}"/usr/lib/nobel-remote/backend/node_modules
 }
