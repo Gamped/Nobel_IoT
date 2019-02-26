@@ -4,21 +4,21 @@ body{
 }
 
 .customText_w{
-    font-family: 'Trebuchet MS', Tahoma, Arial;
+    font-family: 'Maven Pro', 'Trebuchet MS', Tahoma, Arial;
     text-align: center;
     font-size: 3.5vh;
     color: white;
 }
 
 .customText_w_big{
-    font-family: 'Trebuchet MS', Tahoma, Arial;
+    font-family: 'Maven Pro', 'Trebuchet MS', Tahoma, Arial;
     text-align: center;
     font-size: 4vh;
     color: white;
 }
 
 .customText_b{
-    font-family: 'Trebuchet MS', Tahoma, Arial;
+    font-family: 'Maven Pro', 'Trebuchet MS', Tahoma, Arial;
     text-align: center;
     font-size: 3vh;
     color: black;
