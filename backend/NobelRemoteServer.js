@@ -17,6 +17,8 @@ const DBus = require('dbus');
 const service = DBus.registerService('session', servicename);
 const bus = DBus.getBus('session');
 
+/* ============= D-BUS cmd's ============= */
+
 // Send a command to the beamer over DBus
 function BeamerSend(cmd) {
     bus.getInterface(servicename, beamerObectPath, beamerInterface, function(err, interface){
@@ -43,6 +45,9 @@ function RecieverInput(input) {
         } else {interface.SelectInput(input);}
     });
 }
+/* ======================================= */
+
+/* ============== Socket.io ============== */
 
 // Listen on the assigned port
 io.listen(port);
@@ -130,4 +135,5 @@ io.on('connection', (socket) => {
     });
 
     /* ------------------------------------ */
+/* ======================================= */
 });
