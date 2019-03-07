@@ -1,6 +1,6 @@
 import React from "react";
 import {socket} from "../../Socket/Socket"
-import {updateBeamerState, updateChannelState, updateSoundState} from "../../Socket/WsUpdaters"
+import {updatePassFeedback} from "../../Socket/SocketUpdaters"
 import "../Pages.css";
 import "./Admin.css";
 const md5 = require('js-md5');
@@ -10,25 +10,20 @@ class Admin extends React.Component {
         super(props)
         this.state = {
             Title: "Nobel remote: Admin",
-            BeamerState: "Unknown",
-            ChannelState: "Unknown",
             AdminPassword: "",
-            SoundState: "Unknown",
+            passFeedback: "Not connected to backend!",
         }
 
-        // Get the current state
-        socket.emit('getBeamerState');
-        socket.emit('getChannelState');
-        socket.emit('getSoundState');
-
-        // Functions for updating the state
-        updateBeamerState((err, BeamerState) => this.setState({BeamerState}));
-        updateChannelState((err, ChannelState) => this.setState({ChannelState}));
-        updateSoundState((err, SoundState) => this.setState({SoundState}));
+        // Functions to get password feedback text from backend
+        socket.emit('getPassFeedback');
+        updatePassFeedback((err, passFeedback) => this.setState({passFeedback}));
     }
 
-    ToggleBeamer = (e) => {socket.emit('toggleBeamer');}
-    ToggleChannel = (e) => {socket.emit('toggleChannel');}
+    // Functions for sending commands to backend
+    beamerOn = () => {socket.emit('beamerOn');}
+    beamerOff = () => {socket.emit('beamerOff');}
+    channelChromecast = () => {socket.emit('channelChromecast');}
+    channelHDMI = () => {socket.emit('channelHDMI');}
 
     ToggleSound = (e) => {
         // Encrypt password using md5 before sending
@@ -47,28 +42,47 @@ class Admin extends React.Component {
                     </div>
 
                     <div className="Admin_BtnBox">
-                        <h1 className="Admin_InfoText customText_w">Password need to be entered correctly for the system to accept mute/unmute</h1>
+                        <h1 className="Admin_InfoText customText_w">{this.state.passFeedback}</h1>
                         
                         <input  type="Password" 
                                 className="Admin_PassForm customText_b" 
                                 placeholder="Enter admin password" 
                                 onChange={this.OnChange} 
-                                required/>
+                                required
+                        />
 
-                        <button onClick={this.ToggleBeamer} 
-                                className="Admin_BTN dark_BTN customText_w">
-                                Turn {this.state.BeamerState} beamer
-                        </button>
+                        <div className="Admin_BTN_Row">
+                            <button onClick={this.beamerOn} 
+                                    className="Admin_BTN_Left dark_BTN customText_w">
+                                    Switch beamer ON
+                            </button>
+                            <button onClick={this.beamerOff} 
+                                    className="Admin_BTN_Right dark_BTN customText_w">
+                                    Switch beamer OFF
+                            </button>
+                        </div>
 
-                        <button onClick={this.ToggleChannel} 
-                                className="Admin_BTN dark_BTN customText_w">
-                                Change channel to {this.state.ChannelState}
-                        </button>
+                        <div className="Admin_BTN_Row">
+                            <button onClick={this.channelHDMI} 
+                                    className="Admin_BTN_Left dark_BTN customText_w">
+                                    Change to HDMI
+                            </button>
+                            <button onClick={this.channelChromecast} 
+                                    className="Admin_BTN_Right dark_BTN customText_w">
+                                    Change to Chromecast
+                            </button>
+                        </div>
 
-                        <button onClick={this.ToggleSound} 
-                                className="Admin_BTN dark_BTN customText_w">
-                                {this.state.SoundState}
-                        </button>
+                        <div className="Admin_BTN_Row">
+                            <button onClick={this.ToggleSound} 
+                                    className="Admin_BTN_Left dark_BTN customText_w">
+                                    Mute
+                            </button>
+                            <button onClick={this.ToggleSound} 
+                                    className="Admin_BTN_Right dark_BTN customText_w">
+                                    Unmute
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>

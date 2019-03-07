@@ -1,11 +1,7 @@
-const debug = false;
+const debug = true;
 
 const io = require('socket.io')();
 const port = 8000;
-
-var beamerState = true; // <- This is just for mock-data purpose
-var channelState = true; // <- This is just for mock-data purpose
-var soundState = true; // <- This is just for mock-data purpose
 
 const servicename = "dk.nobelnet.mediacontrol";
 const receiverObectPath = "/dk/nobelnet/mediacontrol/receiver";
@@ -14,7 +10,7 @@ const beamerObectPath = "/dk/nobelnet/mediacontrol/projector";
 const beamerInterface = "dk.nobelnet.mediacontrol.projector";
 
 const DBus = require('dbus');
-const service = DBus.registerService('session', servicename);
+// const service = DBus.registerService('session', servicename);
 const bus = DBus.getBus('session');
 
 /* ============= D-BUS cmd's ============= */
@@ -55,85 +51,72 @@ console.log('Linstening on port: ', port);
 
 // Handles clients connecting & the different events
 io.on('connection', (socket) => {
-    if (debug){console.log('Connection started')};
+    if (debug){console.log(new Date(), 'Connection started')};
 
     // Disconect
     socket.on('disconnect', function(){
-        if (debug){console.log('Connection disconnected')}
+        if (debug){console.log(new Date(), 'Connection disconnected')}
     });
 
     /* -------------- BEAMER -------------- */
     // Change state of beamer
-    socket.on('toggleBeamer', function(){
-        if (beamerState === true){
-            beamerState = false;
-            BeamerSend("PowerOff");
-        } else {
-            beamerState = true;
-            BeamerSend("PowerOn");
-        }
-
-        io.sockets.emit('updateBeamerState', beamerState ? "off" : "on");
-
-        if (debug){console.log('Beamer toggled to: ', beamerState)};
+    socket.on('beamerOn', function(){
+        if (debug){console.log(new Date(), "Turned ON beamer")}
+        BeamerSend("PowerOn");
     });
 
-    socket.on('getBeamerState', function(){
-        socket.emit('updateBeamerState', beamerState ? "off" : "on");
+    socket.on('beamerOff', function(){
+        if (debug){console.log(new Date(), "Turned OFF beamer")}
+        BeamerSend("PowerOff");
     });
-
     /* ------------------------------------ */
 
     /* ------------- CHANNELS ------------- */
     // Change the channel between chromecast and HDMI
-    socket.on('toggleChannel', function(){
-        if (channelState === true){
-            channelState = false;
-            RecieverInput("Chromecast");
-        } else {
-            channelState = true;
-            RecieverInput("WallHDMI");
-        }
-
-        io.sockets.emit('updateChannelState', channelState ? "Chromecast" : "HDMI");
-
-        if (debug){console.log('Channel toggled to: ', channelState ? "HDMI" : "Chromecast")};
+    socket.on('channelHDMI', function(){
+        if (debug){console.log(new Date(), "Channel changed to HDMI")}
+        RecieverInput("WallHDMI");
     });
 
-    socket.on('getChannelState', function(){
-        socket.emit('updateChannelState', channelState ? "Chromecast" : "HDMI");
+    socket.on('channelChromecast', function(){
+        if (debug){console.log(new Date(), "Channel changed to Chromecast")}
+        RecieverInput("Chromecast");
     });
-
     /* ------------------------------------ */
 
     /* -------------- VOLUME -------------- */
     // Change the channel between mute/unmute
     // But only if password is valid
-    socket.on('toggleSound', function(pass){
+    socket.on('toggleMute', function(pass){
         // TEMP HARDCODED (md5) PASSWORD - this will be  need to be changed to improve security;)
         if (pass === "16621a449968824b63a8210c42cded23"){
-            if (soundState === true){
-                soundState = false;
-                RecieverSend("Mute");
-            } else {
-                soundState = true;
-                RecieverSend("Unmute");
-            }
-    
-            io.sockets.emit('updateSoundState', soundState ? "Mute" : "Unmute");
-    
-            if (debug){console.log('Channel toggled to: ', soundState ? "Unmute" : "Mute")};
+            if (debug){console.log(new Date(), 'Admin MUTED')};        
+            RecieverSend("Mute");
+            socket.emit('updatePassFeedback', "Correct password :D");
         } else {
             // Invalid password, so let user know + log
             console.log(new Date(), 'Admin login attempt: Wrong password!');
-            socket.emit('updateSoundState', "INVALID PASSWORD");
+            socket.emit('updatePassFeedback', "INVALID PASSWORD!");
         }
     });
-        
-    socket.on('getSoundState', function(){
-        socket.emit('updateSoundState', soundState ? "Mute" : "Unmute");
-    });
 
+    socket.on('toggleUnmute', function(pass){
+        // TEMP HARDCODED (md5) PASSWORD - this will be  need to be changed to improve security;)
+        if (pass === "16621a449968824b63a8210c42cded23"){
+            if (debug){new Date(), console.log('Admin UNMUTED')};        
+            RecieverSend("Unmute");
+            socket.emit('updatePassFeedback', "Correct password :D");
+        } else {
+            // Invalid password, so let user know + log
+            console.log(new Date(), 'Admin login attempt: Wrong password!');
+            socket.emit('updatePassFeedback', "INVALID PASSWORD!");
+        }
+    });
+    
+    // When a client first requests password feedback
+    socket.on('getPassFeedback', function(){
+        socket.emit('updatePassFeedback', "You need the correct password to mute/unmute");
+    });
     /* ------------------------------------ */
-/* ======================================= */
 });
+/* ======================================= */
