@@ -1,6 +1,6 @@
 import React from "react";
 import {socket} from "../../Socket/Socket"
-import {updateBeamerState, updateChannelState, updateSoundState} from "../../Socket/WsUpdaters"
+import {updatePassFeedback} from "../../Socket/SocketUpdaters"
 import "../Pages.css";
 import "./Admin.css";
 const md5 = require('js-md5');
@@ -11,15 +11,19 @@ class Admin extends React.Component {
         this.state = {
             Title: "Nobel remote: Admin",
             AdminPassword: "",
+            passFeedback: "Not connected to backend!",
         }
 
-        //TODO: Change these to
-        socket.emit('getSoundState');
-        updateSoundState((err, SoundState) => this.setState({SoundState}));
+        // Functions to get password feedback text from backend
+        socket.emit('getPassFeedback');
+        updatePassFeedback((err, passFeedback) => this.setState({passFeedback}));
     }
 
-    ToggleBeamer = (e) => {socket.emit('toggleBeamer');}
-    ToggleChannel = (e) => {socket.emit('toggleChannel');}
+    // Functions for sending commands to backend
+    beamerOn = () => {socket.emit('beamerOn');}
+    beamerOff = () => {socket.emit('beamerOff');}
+    channelChromecast = () => {socket.emit('channelChromecast');}
+    channelHDMI = () => {socket.emit('channelHDMI');}
 
     ToggleSound = (e) => {
         // Encrypt password using md5 before sending
@@ -38,7 +42,7 @@ class Admin extends React.Component {
                     </div>
 
                     <div className="Admin_BtnBox">
-                        <h1 className="Admin_InfoText customText_w">You need the correct password to mute/unmute</h1>
+                        <h1 className="Admin_InfoText customText_w">{this.state.passFeedback}</h1>
                         
                         <input  type="Password" 
                                 className="Admin_PassForm customText_b" 
@@ -47,22 +51,22 @@ class Admin extends React.Component {
                                 required/>
 
                         <div className="Admin_BTN_Row">
-                            <button onClick={this.ToggleBeamer} 
+                            <button onClick={this.beamerOn} 
                                     className="Admin_BTN_Left dark_BTN customText_w">
                                     Turn ON beamer
                             </button>
-                            <button onClick={this.ToggleBeamer} 
+                            <button onClick={this.beamerOff} 
                                     className="Admin_BTN_Right dark_BTN customText_w">
                                     Turn OFF beamer
                             </button>
                         </div>
 
                         <div className="Admin_BTN_Row">
-                            <button onClick={this.ToggleChannel} 
+                            <button onClick={this.channelHDMI} 
                                     className="Admin_BTN_Left dark_BTN customText_w">
                                     Change channel to HDMI
                             </button>
-                            <button onClick={this.ToggleChannel} 
+                            <button onClick={this.channelChromecast} 
                                     className="Admin_BTN_Right dark_BTN customText_w">
                                     Change channel to Chromecast
                             </button>
