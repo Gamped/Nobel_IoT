@@ -48,27 +48,28 @@ class Admin extends React.Component {
                                 className="Admin_PassForm customText_b" 
                                 placeholder="Enter admin password" 
                                 onChange={this.OnChange} 
-                                required/>
+                                required
+                        />
 
                         <div className="Admin_BTN_Row">
                             <button onClick={this.beamerOn} 
                                     className="Admin_BTN_Left dark_BTN customText_w">
-                                    Turn ON beamer
+                                    Switch beamer ON
                             </button>
                             <button onClick={this.beamerOff} 
                                     className="Admin_BTN_Right dark_BTN customText_w">
-                                    Turn OFF beamer
+                                    Switch beamer OFF
                             </button>
                         </div>
 
                         <div className="Admin_BTN_Row">
                             <button onClick={this.channelHDMI} 
                                     className="Admin_BTN_Left dark_BTN customText_w">
-                                    Change channel to HDMI
+                                    Change to HDMI
                             </button>
                             <button onClick={this.channelChromecast} 
                                     className="Admin_BTN_Right dark_BTN customText_w">
-                                    Change channel to Chromecast
+                                    Change to Chromecast
                             </button>
                         </div>
 
