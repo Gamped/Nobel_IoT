@@ -10,20 +10,11 @@ class Admin extends React.Component {
         super(props)
         this.state = {
             Title: "Nobel remote: Admin",
-            BeamerState: "Unknown",
-            ChannelState: "Unknown",
             AdminPassword: "",
-            SoundState: "Unknown",
         }
 
-        // Get the current state
-        socket.emit('getBeamerState');
-        socket.emit('getChannelState');
+        //TODO: Change these to
         socket.emit('getSoundState');
-
-        // Functions for updating the state
-        updateBeamerState((err, BeamerState) => this.setState({BeamerState}));
-        updateChannelState((err, ChannelState) => this.setState({ChannelState}));
         updateSoundState((err, SoundState) => this.setState({SoundState}));
     }
 
@@ -47,7 +38,7 @@ class Admin extends React.Component {
                     </div>
 
                     <div className="Admin_BtnBox">
-                        <h1 className="Admin_InfoText customText_w">Password need to be entered correctly for the system to accept mute/unmute</h1>
+                        <h1 className="Admin_InfoText customText_w">You need the correct password to mute/unmute</h1>
                         
                         <input  type="Password" 
                                 className="Admin_PassForm customText_b" 
@@ -55,20 +46,38 @@ class Admin extends React.Component {
                                 onChange={this.OnChange} 
                                 required/>
 
-                        <button onClick={this.ToggleBeamer} 
-                                className="Admin_BTN dark_BTN customText_w">
-                                Turn {this.state.BeamerState} beamer
-                        </button>
+                        <div className="Admin_BTN_Row">
+                            <button onClick={this.ToggleBeamer} 
+                                    className="Admin_BTN_Left dark_BTN customText_w">
+                                    Turn ON beamer
+                            </button>
+                            <button onClick={this.ToggleBeamer} 
+                                    className="Admin_BTN_Right dark_BTN customText_w">
+                                    Turn OFF beamer
+                            </button>
+                        </div>
 
-                        <button onClick={this.ToggleChannel} 
-                                className="Admin_BTN dark_BTN customText_w">
-                                Change channel to {this.state.ChannelState}
-                        </button>
+                        <div className="Admin_BTN_Row">
+                            <button onClick={this.ToggleChannel} 
+                                    className="Admin_BTN_Left dark_BTN customText_w">
+                                    Change channel to HDMI
+                            </button>
+                            <button onClick={this.ToggleChannel} 
+                                    className="Admin_BTN_Right dark_BTN customText_w">
+                                    Change channel to Chromecast
+                            </button>
+                        </div>
 
-                        <button onClick={this.ToggleSound} 
-                                className="Admin_BTN dark_BTN customText_w">
-                                {this.state.SoundState}
-                        </button>
+                        <div className="Admin_BTN_Row">
+                            <button onClick={this.ToggleSound} 
+                                    className="Admin_BTN_Left dark_BTN customText_w">
+                                    Mute
+                            </button>
+                            <button onClick={this.ToggleSound} 
+                                    className="Admin_BTN_Right dark_BTN customText_w">
+                                    Unmute
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
