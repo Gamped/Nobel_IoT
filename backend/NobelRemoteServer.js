@@ -87,7 +87,7 @@ io.on('connection', (socket) => {
     /* -------------- VOLUME -------------- */
     // Change the channel between mute/unmute
     // But only if password is valid
-    socket.on('toggleMute', function(pass){
+    socket.on('mute', function(pass){
         // TEMP HARDCODED (md5) PASSWORD - this will be  need to be changed to improve security;)
         if (pass === "16621a449968824b63a8210c42cded23"){
             if (debug){console.log(new Date(), 'Admin MUTED')};        
@@ -100,7 +100,7 @@ io.on('connection', (socket) => {
         }
     });
 
-    socket.on('toggleUnmute', function(pass){
+    socket.on('unmute', function(pass){
         // TEMP HARDCODED (md5) PASSWORD - this will be  need to be changed to improve security;)
         if (pass === "16621a449968824b63a8210c42cded23"){
             if (debug){new Date(), console.log('Admin UNMUTED')};        

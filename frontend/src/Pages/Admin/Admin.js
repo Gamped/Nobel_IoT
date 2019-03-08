@@ -20,15 +20,19 @@ class Admin extends React.Component {
     }
 
     // Functions for sending commands to backend
-    beamerOn = () => {socket.emit('beamerOn');}
-    beamerOff = () => {socket.emit('beamerOff');}
-    channelChromecast = () => {socket.emit('channelChromecast');}
-    channelHDMI = () => {socket.emit('channelHDMI');}
-
-    ToggleSound = (e) => {
+    BeamerOn = () => {socket.emit('beamerOn');}
+    BeamerOff = () => {socket.emit('beamerOff');}
+    ChannelChromecast = () => {socket.emit('channelChromecast');}
+    ChannelHDMI = () => {socket.emit('channelHDMI');}
+    Mute = () => {
         // Encrypt password using md5 before sending
         var md5Pass = md5(this.state.AdminPassword + "saltyNobel");
-        socket.emit('toggleSound', md5Pass);
+        socket.emit('mute', md5Pass);
+    }
+    Unmute = () => {
+        // Encrypt password using md5 before sending
+        var md5Pass = md5(this.state.AdminPassword + "saltyNobel");
+        socket.emit('mute', md5Pass);
     }
 
     OnChange = (e) => {this.setState({...this, AdminPassword: e.target.value});}
@@ -52,33 +56,33 @@ class Admin extends React.Component {
                         />
 
                         <div className="Admin_BTN_Row">
-                            <button onClick={this.beamerOn} 
+                            <button onClick={this.BeamerOn} 
                                     className="Admin_BTN_Left dark_BTN customText_w">
                                     Switch beamer ON
                             </button>
-                            <button onClick={this.beamerOff} 
+                            <button onClick={this.BeamerOff} 
                                     className="Admin_BTN_Right dark_BTN customText_w">
                                     Switch beamer OFF
                             </button>
                         </div>
 
                         <div className="Admin_BTN_Row">
-                            <button onClick={this.channelHDMI} 
+                            <button onClick={this.ChannelHDMI} 
                                     className="Admin_BTN_Left dark_BTN customText_w">
                                     Change to HDMI
                             </button>
-                            <button onClick={this.channelChromecast} 
+                            <button onClick={this.ChannelChromecast} 
                                     className="Admin_BTN_Right dark_BTN customText_w">
                                     Change to Chromecast
                             </button>
                         </div>
 
                         <div className="Admin_BTN_Row">
-                            <button onClick={this.ToggleSound} 
+                            <button onClick={this.Mute} 
                                     className="Admin_BTN_Left dark_BTN customText_w">
                                     Mute
                             </button>
-                            <button onClick={this.ToggleSound} 
+                            <button onClick={this.Unmute} 
                                     className="Admin_BTN_Right dark_BTN customText_w">
                                     Unmute
                             </button>

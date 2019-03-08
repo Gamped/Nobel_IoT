@@ -12,10 +12,10 @@ class Home extends React.Component {
     }
 
     // Functions for sending commands to backend
-    beamerOn = () => {socket.emit('beamerOn');}
-    beamerOff = () => {socket.emit('beamerOff');}
-    channelChromecast = () => {socket.emit('channelChromecast');}
-    channelHDMI = () => {socket.emit('channelHDMI');}
+    BeamerOn = () => {socket.emit('beamerOn');}
+    BeamerOff = () => {socket.emit('beamerOff');}
+    ChannelChromecast = () => {socket.emit('channelChromecast');}
+    ChannelHDMI = () => {socket.emit('channelHDMI');}
 
     render(){
         return(
@@ -27,22 +27,22 @@ class Home extends React.Component {
 
                     <div className="Home_BtnBox">
                         <div className="Home_BTN_Row">
-                            <button onClick={this.beamerOn} 
+                            <button onClick={this.BeamerOn} 
                                     className="Home_BTN_Left std_BTN customText_w">
                                     Switch beamer ON
                             </button>
-                            <button onClick={this.beamerOff} 
+                            <button onClick={this.BeamerOff} 
                                     className="Home_BTN_Right std_BTN customText_w">
                                     Switch beamer OFF
                             </button>
                         </div>
 
                         <div className="Home_BTN_Row">
-                            <button onClick={this.channelChromecast} 
+                            <button onClick={this.ChannelChromecast} 
                                     className="Home_BTN_Left std_BTN customText_w">
                                     Change to Chromecast
                             </button>
-                            <button onClick={this.channelHDMI} 
+                            <button onClick={this.ChannelHDMI} 
                                     className="Home_BTN_Right std_BTN customText_w">
                                     Change to HDMI
                             </button>
