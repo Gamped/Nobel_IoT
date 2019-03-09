@@ -1,4 +1,4 @@
-const debug = true;
+const debug = false;
 
 const io = require('socket.io')();
 const port = 8000;
@@ -10,8 +10,9 @@ const beamerObectPath = "/dk/nobelnet/mediacontrol/projector";
 const beamerInterface = "dk.nobelnet.mediacontrol.projector";
 
 const DBus = require('dbus');
-// const service = DBus.registerService('session', servicename);
 const bus = DBus.getBus('session');
+
+const adminPass = "16621a449968824b63a8210c42cded23" // This is only temp and result of salted md5
 
 /* ============= D-BUS cmd's ============= */
 
@@ -89,7 +90,7 @@ io.on('connection', (socket) => {
     // But only if password is valid
     socket.on('mute', function(pass){
         // TEMP HARDCODED (md5) PASSWORD - this will be  need to be changed to improve security;)
-        if (pass === "16621a449968824b63a8210c42cded23"){
+        if (pass === adminPass){
             if (debug){console.log(new Date(), 'Admin MUTED')};        
             RecieverSend("Mute");
             socket.emit('updatePassFeedback', "Correct password :D");
@@ -102,7 +103,7 @@ io.on('connection', (socket) => {
 
     socket.on('unmute', function(pass){
         // TEMP HARDCODED (md5) PASSWORD - this will be  need to be changed to improve security;)
-        if (pass === "16621a449968824b63a8210c42cded23"){
+        if (pass === adminPass){
             if (debug){new Date(), console.log('Admin UNMUTED')};        
             RecieverSend("Unmute");
             socket.emit('updatePassFeedback', "Correct password :D");
