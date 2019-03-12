@@ -40,12 +40,7 @@ function RecieverInput(input) {
     bus.getInterface(servicename, receiverObjectPath, receiverInterface, function(err, interface){
         if (err) {
             throw new Error("Could not connect to reciever");
-        } else {
-            hest = interface.SelectInput(input);
-            if (debug) {
-                console.log(hest);
-            }
-        }
+        } else {interface.SelectInput(input);}
     });
 }
 /* ======================================= */
