@@ -13,7 +13,7 @@ url="nobelnet.dk"
 license=('GPL-3.0')
 #depends=('nobel-mediacontrol' 'npm' 'nodejs')
 depends=('npm' 'nodejs')
-source=(git://github.com/Gamped/Nobel_IoT.git)
+source=(git://github.com/Gamped/Nobel_Remote.git)
 md5sums=('SKIP')
 
 build() {
