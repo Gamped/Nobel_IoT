@@ -40,7 +40,12 @@ function RecieverInput(input) {
     bus.getInterface(servicename, receiverObjectPath, receiverInterface, function(err, interface){
         if (err) {
             throw new Error("Could not connect to reciever");
-        } else {interface.SelectInput(input);}
+        } else {
+            hest = interface.SelectInput(input);
+            if (debug) {
+                console.log(hest);
+            }
+        }
     });
 }
 /* ======================================= */
@@ -77,12 +82,12 @@ io.on('connection', (socket) => {
     // Change the channel between chromecast and HDMI
     socket.on('channelHDMI', function(){
         if (debug){console.log(new Date(), "Channel changed to HDMI")}
-        RecieverInput("WallHDMI");
+        RecieverInput("wallhdmi");
     });
 
     socket.on('channelChromecast', function(){
         if (debug){console.log(new Date(), "Channel changed to Chromecast")}
-        RecieverInput("Chromecast");
+        RecieverInput("chromecast");
     });
     /* ------------------------------------ */
 

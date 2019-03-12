@@ -11,8 +11,7 @@ pkgdesc="Webpage for controlling nobel-mediacontrol"
 arch=('x86_64' 'i686')
 url="nobelnet.dk"
 license=('GPL-3.0')
-#depends=('nobel-mediacontrol' 'npm' 'nodejs')
-depends=('npm' 'nodejs')
+depends=('nobel-mediacontrol' 'npm' 'nodejs')
 source=(git://github.com/Gamped/Nobel_Remote.git)
 md5sums=('SKIP')
 
