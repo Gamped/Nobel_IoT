@@ -5,7 +5,7 @@ const port = 8000;
 
 const servicename = "dk.nobelnet.mediacontrol";
 const receiverObjectPath = "/dk/nobelnet/mediacontrol/receiver";
-const receiverInterface = "dk.nobelnet.mediactontrol.receiver";
+const receiverInterface = "dk.nobelnet.mediacontrol.receiver";
 
 const beamerObjectPath = "/dk/nobelnet/mediacontrol/projector"; 
 const beamerInterface = "dk.nobelnet.mediacontrol.projector";
