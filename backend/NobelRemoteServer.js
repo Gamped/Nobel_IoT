@@ -1,16 +1,17 @@
-const debug = false;
+const debug = true;
 
 const io = require('socket.io')();
 const port = 8000;
 
 const servicename = "dk.nobelnet.mediacontrol";
-const receiverObectPath = "/dk/nobelnet/mediacontrol/receiver";
+const receiverObjectPath = "/dk/nobelnet/mediacontrol/receiver";
 const receiverInterface = "dk.nobelnet.mediactontrol.receiver";
-const beamerObectPath = "/dk/nobelnet/mediacontrol/projector"; 
+
+const beamerObjectPath = "/dk/nobelnet/mediacontrol/projector"; 
 const beamerInterface = "dk.nobelnet.mediacontrol.projector";
 
 const DBus = require('dbus');
-const bus = DBus.getBus('session');
+const bus = DBus.getBus('system');
 
 const adminPass = "16621a449968824b63a8210c42cded23" // This is only temp and result of salted md5
 
@@ -18,7 +19,7 @@ const adminPass = "16621a449968824b63a8210c42cded23" // This is only temp and re
 
 // Send a command to the beamer over DBus
 function BeamerSend(cmd) {
-    bus.getInterface(servicename, beamerObectPath, beamerInterface, function(err, interface){
+    bus.getInterface(servicename, beamerObjectPath, beamerInterface, function(err, interface){
         if (err) {
             throw new Error("Could not connect to beamer");
         } else {interface.SendCommand(cmd);}
@@ -27,7 +28,7 @@ function BeamerSend(cmd) {
 
 // Send a command to the reciever over DBus
 function RecieverSend(cmd) {
-    bus.getInterface(servicename, receiverObectPath, receiverInterface, function(err, interface){
+    bus.getInterface(servicename, receiverObjectPath, receiverInterface, function(err, interface){
         if (err) {
             throw new Error("Could not connect to reciever");
         } else {interface.SendCommand(cmd);}
@@ -36,7 +37,7 @@ function RecieverSend(cmd) {
 
 // Select input for the reciever over DBus
 function RecieverInput(input) {
-    bus.getInterface(servicename, receiverObectPath, receiverInterface, function(err, interface){
+    bus.getInterface(servicename, receiverObjectPath, receiverInterface, function(err, interface){
         if (err) {
             throw new Error("Could not connect to reciever");
         } else {interface.SelectInput(input);}
