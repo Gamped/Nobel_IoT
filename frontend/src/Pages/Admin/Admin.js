@@ -32,7 +32,7 @@ class Admin extends React.Component {
     Unmute = () => {
         // Encrypt password using md5 before sending
         var md5Pass = md5(this.state.AdminPassword + "saltyNobel");
-        socket.emit('mute', md5Pass);
+        socket.emit('unmute', md5Pass);
     }
 
     OnChange = (e) => {this.setState({...this, AdminPassword: e.target.value});}
