@@ -1,9 +1,17 @@
-.Home_BTN{
-    width: 90%;
-    top: 0;
-    height: 40vh;
+.Home_BTN_Left{
+    position: absolute;
+    width: 42.5%;
+    height: 90%;
+    left: 5%;
     margin-top: 2vh;
-    margin-left: 5%
+}
+
+.Home_BTN_Right{
+    position: absolute;
+    width: 42.5%;
+    height: 90%;
+    right: 5%;
+    margin-top: 2vh;
 }
 
 .Home_BtnBox{
@@ -20,4 +28,10 @@
     background-image: linear-gradient(#506371, #374855);
     border-style: solid;
     border-color: #091824; 
+}
+
+.Home_BTN_Row{
+    position: relative;
+    width: 100%;
+    height: 50%;
 }
