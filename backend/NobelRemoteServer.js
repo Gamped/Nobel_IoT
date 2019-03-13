@@ -6,14 +6,14 @@ const port = 8000;
 const servicename = "dk.nobelnet.mediacontrol";
 const receiverObjectPath = "/dk/nobelnet/mediacontrol/receiver";
 const receiverInterface = "dk.nobelnet.mediacontrol.receiver";
-
 const beamerObjectPath = "/dk/nobelnet/mediacontrol/projector"; 
 const beamerInterface = "dk.nobelnet.mediacontrol.projector";
 
 const DBus = require('dbus');
 const bus = DBus.getBus('system');
 
-const adminPass = "16621a449968824b63a8210c42cded23" // This is only temp and result of salted md5
+// This is only temp and result of salted md5 - Will be changed in future to improve security ;)
+const adminPass = "16621a449968824b63a8210c42cded23" 
 
 /* ============= D-BUS cmd's ============= */
 
@@ -90,35 +90,37 @@ io.on('connection', (socket) => {
     // Change the channel between mute/unmute
     // But only if password is valid
     socket.on('mute', function(pass){
-        // TEMP HARDCODED (md5) PASSWORD - this will be  need to be changed to improve security;)
-        if (pass === adminPass){
-            if (debug){console.log(new Date(), 'Admin MUTED')};        
-            RecieverSend("Mute");
-            socket.emit('updatePassFeedback', "Correct password :D");
-        } else {
-            // Invalid password, so let user know + log
-            console.log(new Date(), 'Admin login attempt: Wrong password!');
-            socket.emit('updatePassFeedback', "INVALID PASSWORD!");
-        }
+        SoundControl(true, pass);
     });
 
     socket.on('unmute', function(pass){
-        // TEMP HARDCODED (md5) PASSWORD - this will be  need to be changed to improve security;)
-        if (pass === adminPass){
-            if (debug){new Date(), console.log('Admin UNMUTED')};        
-            RecieverSend("Unmute");
-            socket.emit('updatePassFeedback', "Correct password :D");
-        } else {
-            // Invalid password, so let user know + log
-            console.log(new Date(), 'Admin login attempt: Wrong password!');
-            socket.emit('updatePassFeedback', "INVALID PASSWORD!");
-        }
+        SoundControl(false, pass);
     });
     
     // When a client first requests password feedback
     socket.on('getPassFeedback', function(){
         socket.emit('updatePassFeedback', "You need the correct password to mute/unmute");
     });
+
+    // The function for validating password and mute/unmute
+    function SoundControl(bMute, pass){
+        // TEMP HARDCODED (salted md5) PASSWORD - Will be changed in future to improve security ;)
+        if (pass === adminPass){
+            // Switch between mute and unmute
+            if (bMute){
+                if (debug){console.log(new Date(), 'Admin MUTED')};        
+                RecieverSend("Mute");
+            } else {
+                if (debug){new Date(), console.log('Admin UNMUTED')};        
+                RecieverSend("Unmute");
+            }
+            socket.emit('updatePassFeedback', "Correct password :D");
+        } else {
+            // Invalid password, so let user know + log
+            console.log(new Date(), 'Admin login attempt: Wrong password!');
+            socket.emit('updatePassFeedback', "INVALID PASSWORD!");
+        }
+    }
     /* ------------------------------------ */
 });
 /* ======================================= */
