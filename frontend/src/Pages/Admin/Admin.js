@@ -24,18 +24,18 @@ class Admin extends React.Component {
     BeamerOff = () => {socket.emit('beamerOff');}
     ChannelChromecast = () => {socket.emit('channelChromecast');}
     ChannelHDMI = () => {socket.emit('channelHDMI');}
+
+    // Encrypt password using md5 before sending
     Mute = () => {
-        // Encrypt password using md5 before sending
         var md5Pass = md5(this.state.AdminPassword + "saltyNobel");
         socket.emit('mute', md5Pass);
     }
     Unmute = () => {
-        // Encrypt password using md5 before sending
         var md5Pass = md5(this.state.AdminPassword + "saltyNobel");
         socket.emit('unmute', md5Pass);
     }
 
-    OnChange = (e) => {this.setState({...this, AdminPassword: e.target.value});}
+    OnPassChange = (e) => {this.setState({...this, AdminPassword: e.target.value});}
 
     render(){
         return(
@@ -51,7 +51,7 @@ class Admin extends React.Component {
                         <input  type="Password" 
                                 className="Admin_PassForm customText_b" 
                                 placeholder="Enter admin password" 
-                                onChange={this.OnChange} 
+                                onChange={this.OnPassChange} 
                                 required
                         />
 

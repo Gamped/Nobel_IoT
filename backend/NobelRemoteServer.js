@@ -12,7 +12,7 @@ const beamerInterface = "dk.nobelnet.mediacontrol.projector";
 const DBus = require('dbus');
 const bus = DBus.getBus('system');
 
-// This is only temp and result of salted md5 - Will be changed in future to improve security ;)
+// TEMP HARDCODED (salted md5) PASSWORD - Will be changed in future to improve security ;)
 const adminPass = "16621a449968824b63a8210c42cded23" 
 
 /* ============= D-BUS cmd's ============= */
@@ -49,7 +49,10 @@ function RecieverInput(input) {
 
 // Listen on the assigned port
 io.listen(port);
-console.log('Linstening on port: ', port);
+console.log('==============================\n' 
+            + '<< NOBEL REMOTE BACKEND >>\n'
+            + 'Listening on port: ', port + '\n'
+            + '==============================\n');
 
 // Handles clients connecting & the different events
 io.on('connection', (socket) => {
@@ -89,13 +92,8 @@ io.on('connection', (socket) => {
     /* -------------- VOLUME -------------- */
     // Change the channel between mute/unmute
     // But only if password is valid
-    socket.on('mute', function(pass){
-        SoundControl(true, pass);
-    });
-
-    socket.on('unmute', function(pass){
-        SoundControl(false, pass);
-    });
+    socket.on('mute', function(pass){SoundControl(true, pass);});
+    socket.on('unmute', function(pass){SoundControl(false, pass);});
     
     // When a client first requests password feedback
     socket.on('getPassFeedback', function(){
@@ -104,7 +102,6 @@ io.on('connection', (socket) => {
 
     // The function for validating password and mute/unmute
     function SoundControl(bMute, pass){
-        // TEMP HARDCODED (salted md5) PASSWORD - Will be changed in future to improve security ;)
         if (pass === adminPass){
             // Switch between mute and unmute
             if (bMute){
@@ -114,6 +111,7 @@ io.on('connection', (socket) => {
                 if (debug){new Date(), console.log('Admin UNMUTED')};        
                 RecieverSend("Unmute");
             }
+            
             socket.emit('updatePassFeedback', "Correct password :D");
         } else {
             // Invalid password, so let user know + log
