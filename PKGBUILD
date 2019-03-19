@@ -29,6 +29,7 @@ package() {
   # Backend
   cd $srcdir/$BACKEND
   install -D -m644 NobelRemoteServer.js "${pkgdir}"/usr/lib/nobel-remote/backend/NobelRemoteServer.js
+  install -D -m644 nobelRemote.service "${pkgdir}"/usr/lib/systemd/system/nobelRemote.service
   cp -r node_modules "${pkgdir}"/usr/lib/nobel-remote/backend/node_modules
 
   # Frontend
