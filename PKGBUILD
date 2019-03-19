@@ -1,10 +1,13 @@
 # NOTE: This will only create a package for the backend
 # the REACT frontend need to be served seperately
 
-# Maintainer: Mathias <youremail@domain.com>
+# Maintainer: Mathias
 pkgname=nobel-remote
+
 PROJECTNAME=Nobel_Remote
 BACKEND=$PROJECTNAME/backend
+FRONTENDBUILD=$PROJECTNAME/frontend
+
 pkgver=1
 pkgrel=1
 pkgdesc="Webpage for controlling nobel-mediacontrol"
@@ -16,13 +19,19 @@ source=(git://github.com/Gamped/Nobel_Remote.git)
 md5sums=('SKIP')
 
 build() {
+  # Backend
   cd $srcdir/$BACKEND
   npm install dbus
   npm install socketio
 }
 
 package() {
+  # Backend
   cd $srcdir/$BACKEND
   install -D -m644 NobelRemoteServer.js "${pkgdir}"/usr/lib/nobel-remote/backend/NobelRemoteServer.js
   install -d -m644 node_modules "${pkgdir}"/usr/lib/nobel-remote/backend/node_modules
+
+  # Frontend
+  cd $srcdir/$FRONTENDBUILD
+  install -d -m644 build "${pkgdir}"/var/www/nobel-remote
 }
