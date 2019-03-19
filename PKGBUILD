@@ -33,5 +33,6 @@ package() {
 
   # Frontend
   cd $srcdir/$FRONTENDBUILD
+  mkdir -p "${pkgdir}"/var/www
   cp -r build "${pkgdir}"/var/www/nobel-remote
 }

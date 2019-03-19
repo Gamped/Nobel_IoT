@@ -1,4 +1,4 @@
-const debug = true;
+const debug = false;
 
 const io = require('socket.io')();
 const port = 8000;
