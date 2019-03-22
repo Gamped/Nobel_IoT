@@ -1,0 +1,13 @@
+[Unit]
+Description=Nobel-remote backend
+After=mediacontrold.service
+
+[Service]
+User=gamped
+Group=gamped
+Type=simple
+ExecStart=node /usr/lib/nobel-remote//backend/NobelRemoteServer.js
+KillMode=process
+
+[Install]
+WantedBy=multi-user.target
