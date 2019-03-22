@@ -28,22 +28,26 @@ class Home extends React.Component {
                     <div className="Home_BtnBox">
                         <div className="Home_BTN_Row">
                             <button onClick={this.BeamerOn} 
-                                    className="Home_BTN_Left std_BTN customText_w">
-                                    Switch beamer ON
+                                    type="button"
+                                    className="btn btn-dark Home_BTN_Left std_BTN customText_w">
+                                    Projector ON
                             </button>
                             <button onClick={this.BeamerOff} 
-                                    className="Home_BTN_Right std_BTN customText_w">
-                                    Switch beamer OFF
+                                    type="button"
+                                    className="btn btn-dark Home_BTN_Right std_BTN customText_w">
+                                    Projector OFF
                             </button>
                         </div>
 
                         <div className="Home_BTN_Row">
                             <button onClick={this.ChannelChromecast} 
-                                    className="Home_BTN_Left std_BTN customText_w">
+                                    type="button"
+                                    className="btn btn-dark Home_BTN_Left std_BTN customText_w">
                                     Change to Chromecast
                             </button>
                             <button onClick={this.ChannelHDMI} 
-                                    className="Home_BTN_Right std_BTN customText_w">
+                                    type="button"
+                                    className="btn btn-dark Home_BTN_Right std_BTN customText_w">
                                     Change to HDMI
                             </button>
                         </div>

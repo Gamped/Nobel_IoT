@@ -5,7 +5,7 @@ Nobel remote is a client-server solution which can give users access to switch o
 The UI is designed primarily for mobiles and is fully responsive. 
 
 ## Technologies: 
-- **Frontend:** REACT
+- **Frontend:** REACT & Bootstrap
 - **Backend:** Node.js
 - **Comunnication frontend/backend via:** Socket.io
 - **Communication via DBus to controller:** https://www.npmjs.com/package/dbus
