@@ -42,7 +42,7 @@ class Admin extends React.Component {
             <div className="PageBorder">
                 <div className="Margin_2">
                     <div className="Admin_TitleBox">
-                        <h1 className="customText_w_big">{this.state.Title}</h1>
+                        <h1 className="customText_w_big MoveTop">{this.state.Title}</h1>
                     </div>
 
                     <div className="Admin_BtnBox">
@@ -57,33 +57,33 @@ class Admin extends React.Component {
 
                         <div className="Admin_BTN_Row">
                             <button onClick={this.BeamerOn} 
-                                    className="Admin_BTN_Left dark_BTN customText_w">
-                                    Switch beamer ON
+                                    className="customText_w btn btn-dark Admin_BTN_Left dark_BTN">
+                                    Projector ON
                             </button>
                             <button onClick={this.BeamerOff} 
-                                    className="Admin_BTN_Right dark_BTN customText_w">
-                                    Switch beamer OFF
+                                    className="btn btn-dark Admin_BTN_Right dark_BTN customText_w">
+                                    Projector OFF
                             </button>
                         </div>
 
                         <div className="Admin_BTN_Row">
                             <button onClick={this.ChannelHDMI} 
-                                    className="Admin_BTN_Left dark_BTN customText_w">
+                                    className="btn btn-dark Admin_BTN_Left dark_BTN customText_w">
                                     Change to HDMI
                             </button>
                             <button onClick={this.ChannelChromecast} 
-                                    className="Admin_BTN_Right dark_BTN customText_w">
+                                    className="btn btn-dark Admin_BTN_Right dark_BTN customText_w">
                                     Change to Chromecast
                             </button>
                         </div>
 
                         <div className="Admin_BTN_Row">
                             <button onClick={this.Mute} 
-                                    className="Admin_BTN_Left dark_BTN customText_w">
+                                    className="btn btn-dark Admin_BTN_Left dark_BTN customText_w">
                                     Mute
                             </button>
                             <button onClick={this.Unmute} 
-                                    className="Admin_BTN_Right dark_BTN customText_w">
+                                    className="btn btn-dark Admin_BTN_Right dark_BTN customText_w">
                                     Unmute
                             </button>
                         </div>
