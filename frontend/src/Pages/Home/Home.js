@@ -43,12 +43,12 @@ class Home extends React.Component {
                             <button onClick={this.ChannelChromecast} 
                                     type="button"
                                     className="btn btn-dark Home_BTN_Left std_BTN customText_w">
-                                    Change to Chromecast
+                                    Chromecast
                             </button>
                             <button onClick={this.ChannelHDMI} 
                                     type="button"
                                     className="btn btn-dark Home_BTN_Right std_BTN customText_w">
-                                    Change to HDMI
+                                    HDMI
                             </button>
                         </div>
                     </div>
