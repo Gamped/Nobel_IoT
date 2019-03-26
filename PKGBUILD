@@ -23,7 +23,6 @@ build() {
   cd $srcdir/$BACKEND
   npm install dbus
   npm install socketio
-  npm install bootstrap
 }
 
 package() {
