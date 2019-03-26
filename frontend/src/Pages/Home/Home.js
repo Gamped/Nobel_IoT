@@ -22,7 +22,7 @@ class Home extends React.Component {
             <div className="PageBorder">
                 <div className="Margin_2">
                     <div className="Home_TitleBox">
-                        <h1 className="customText_w_big">{this.state.Title}</h1>
+                        <h1 className="Home_InfoText customText_w_big">{this.state.Title}</h1>
                     </div>
 
                     <div className="Home_BtnBox">
