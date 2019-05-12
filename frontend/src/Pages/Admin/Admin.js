@@ -45,48 +45,69 @@ class Admin extends React.Component {
                         <h1 className="customText_w_big MoveTop">{this.state.Title}</h1>
                     </div>
 
-                    <div className="Admin_BtnBox">
-                        <h1 className="Admin_InfoText customText_w">{this.state.passFeedback}</h1>
-                        
-                        <input  type="Password" 
-                                className="Admin_PassForm customText_b" 
-                                placeholder="Enter admin password" 
-                                onChange={this.OnPassChange} 
-                                required
-                        />
-
-                        <div className="Admin_BTN_Row">
-                            <button onClick={this.BeamerOn} 
-                                    className="customText_w btn btn-dark Admin_BTN_Left dark_BTN">
-                                    Projector ON
-                            </button>
-                            <button onClick={this.BeamerOff} 
-                                    className="btn btn-dark Admin_BTN_Right dark_BTN customText_w">
-                                    Projector OFF
-                            </button>
+                    <div className="Admin_ContentBox">
+                        <div className="row">
+                            <div className="col-xl">
+                                <h1 className="Admin_InfoText customText_w">{this.state.passFeedback}</h1>
+                            </div>
                         </div>
 
-                        <div className="Admin_BTN_Row">
-                            <button onClick={this.ChannelHDMI} 
-                                    className="btn btn-dark Admin_BTN_Left dark_BTN customText_w">
-                                    Change to HDMI
-                            </button>
-                            <button onClick={this.ChannelChromecast} 
-                                    className="btn btn-dark Admin_BTN_Right dark_BTN customText_w">
-                                    Change to Chromecast
-                            </button>
+                        <div className="row">
+                            <div className="col-xl">
+                                <input  type="Password" 
+                                    className="Admin_PassForm customText_b" 
+                                    placeholder="Enter admin password" 
+                                    onChange={this.OnPassChange} 
+                                    required
+                                />
+                            </div>
                         </div>
 
-                        <div className="Admin_BTN_Row">
-                            <button onClick={this.Mute} 
-                                    className="btn btn-dark Admin_BTN_Left dark_BTN customText_w">
-                                    Mute
-                            </button>
-                            <button onClick={this.Unmute} 
-                                    className="btn btn-dark Admin_BTN_Right dark_BTN customText_w">
-                                    Unmute
-                            </button>
+                        <div className="row no-gutters Admin_BTN_Row">
+                            <div className="col">
+                                <button onClick={this.BeamerOn} 
+                                        className="btn btn-dark Admin_BTN dark_BTN customText_w">
+                                        Projector ON
+                                </button>
+                            </div>
+                            <div className="col">
+                                <button onClick={this.BeamerOff} 
+                                        className="btn btn-dark Admin_BTN dark_BTN customText_w">
+                                        Projector OFF
+                                </button>
+                            </div>
                         </div>
+
+                        <div className="row no-gutters Admin_BTN_Row">
+                            <div className="col">
+                                <button onClick={this.ChannelHDMI} 
+                                        className="btn btn-dark Admin_BTN dark_BTN customText_w">
+                                        Change to HDMI
+                                </button>
+                            </div>
+                            <div className="col">
+                                <button onClick={this.ChannelChromecast} 
+                                        className="btn btn-dark Admin_BTN dark_BTN customText_w">
+                                        Change to Chromecast
+                                </button>
+                            </div>
+                        </div>
+
+                        <div className="row no-gutters Admin_BTN_Row">
+                            <div className="col">
+                                <button onClick={this.Mute} 
+                                        className="btn btn-dark Admin_BTN dark_BTN customText_w">
+                                        Mute
+                                </button>
+                            </div>
+                            <div className="col">
+                                <button onClick={this.Unmute} 
+                                        className="btn btn-dark Admin_BTN dark_BTN customText_w">
+                                        Unmute
+                                </button>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </div>
