@@ -21,37 +21,47 @@ class Home extends React.Component {
         return(
             <div className="PageBorder">
                 <div className="Margin_2">
+
                     <div className="Home_TitleBox">
                         <h1 className="Home_InfoText customText_w_big">{this.state.Title}</h1>
                     </div>
 
                     <div className="Home_BtnBox">
-                        <div className="Home_BTN_Row">
-                            <button onClick={this.BeamerOn} 
-                                    type="button"
-                                    className="btn btn-dark Home_BTN_Left std_BTN customText_w">
-                                    Projector ON
-                            </button>
-                            <button onClick={this.BeamerOff} 
-                                    type="button"
-                                    className="btn btn-dark Home_BTN_Right std_BTN customText_w">
-                                    Projector OFF
-                            </button>
+                        <div className="row Home_BTN_Row">
+                            <div className="col-sm">
+                                <button onClick={this.BeamerOn} 
+                                        type="button"
+                                        className="btn btn-dark Home_BTN std_BTN customText_w">
+                                        Projector ON
+                                </button>
+                            </div>
+                            <div className="col-sm">
+                                <button onClick={this.BeamerOff} 
+                                        type="button"
+                                        className="btn btn-dark Home_BTN std_BTN customText_w">
+                                        Projector OFF
+                                </button>
+                            </div>
                         </div>
 
-                        <div className="Home_BTN_Row">
-                            <button onClick={this.ChannelChromecast} 
-                                    type="button"
-                                    className="btn btn-dark Home_BTN_Left std_BTN customText_w">
-                                    Chromecast
-                            </button>
-                            <button onClick={this.ChannelHDMI} 
-                                    type="button"
-                                    className="btn btn-dark Home_BTN_Right std_BTN customText_w">
-                                    HDMI
-                            </button>
+                        <div className="row Home_BTN_Row">
+                            <div className="col-sm">
+                                <button onClick={this.ChannelChromecast} 
+                                        type="button"
+                                        className="btn btn-dark Home_BTN std_BTN customText_w">
+                                        Chromecast
+                                </button>
+                            </div>
+                            <div className="col-sm">
+                                <button onClick={this.ChannelHDMI} 
+                                        type="button"
+                                        className="btn btn-dark Home_BTN std_BTN customText_w">
+                                        HDMI
+                                </button>
+                            </div>
                         </div>
                     </div>
+                    
                 </div>
             </div>
         );
