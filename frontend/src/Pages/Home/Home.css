@@ -1,17 +1,6 @@
-.Home_BTN_Left{
-    position: absolute;
-    width: 42.5%;
+.Home_BTN{
+    width: 100%;
     height: 90%;
-    left: 5%;
-    margin-top: 2vh;
-}
-
-.Home_BTN_Right{
-    position: absolute;
-    width: 42.5%;
-    height: 90%;
-    right: 5%;
-    margin-top: 2vh;
 }
 
 .Home_BtnBox{
@@ -31,8 +20,6 @@
 }
 
 .Home_BTN_Row{
-    position: relative;
-    width: 100%;
     height: 50%;
 }
 
